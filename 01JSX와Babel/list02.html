@@ -27,7 +27,7 @@
                     <h2>ToDo List</h2>
                     {todos.map((todo, index) => (
                         <div key={todo.id}>
-                            <button>{todo.value}</button>
+                            <button>{todo.id}{todo.value}</button>
                         </div>
                     ))
 
