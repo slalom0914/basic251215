@@ -4,16 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hello react</title>
-    <!-- react.development.js 리액트 훅 -->
-    <!-- 
-        CDN - 로컬(PC) 캐쉬사용 - 속도 느림
-        UNPKG - 네트워크 통해 객체 주입 - 속도 빠름
-    -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <!-- 돔관련 라이브러리 -->
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- 파일이름에 min들어간 파일은 들여쓰기나 줄바꿈이 배제됨 - 파일크기 적다. -->
-    <!-- ES6 -> ES5변경해줌 -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
@@ -26,10 +18,13 @@
     </style>
     <script type="text/babel">  
         const root = document.querySelector("#root")
-        const msg = "Hello React!!!"
+        const msg = "Hello 리액트!!!"
         const 클래스이름 = "title"
-        const element = <h2 className={클래스이름}>{msg}</h2> //JSX문법 -> html과 js섞어쓰기
-        ReactDOM.createRoot(root).render(element)
+        const props = {className: 클래스이름, children: msg}
+        //스프레드연산자
+        //하위(자손)태그가 존재하지 않으면 닫힌 태그를 한 번에 사용함
+        const 사용자정의태그 = <h2 {...props} /> //JSX문법 -> html과 js섞어쓰기
+        ReactDOM.createRoot(root).render(사용자정의태그)
     </script>
 </body>
 </html>

@@ -13,14 +13,19 @@
     <script type="text/babel">  
         const root = document.querySelector("#root")
         const element = (
-            <>
+            //여기는 JS영역이다. JSX코드사용불가
+            //<>태그이면 그것이 Fragment임
+            <React.Fragment>
+                {/* JSX문법 주석이다. */}
+                {/* element내부에 여러 엘리먼트를 사용할 때는 반드시 전체를 감싸는 태그가 필요함 */}
+                {/* div태그로 묶어도 합법 -> 불필요한 태그가 추가되는 것이 별로임 */}
                 <h2>목록 보기</h2>
                 {
                     ['🍉','🍓','🍅'].map((currentValue, x, array) => (
                         <h1 key={x}>{currentValue}</h1>
                     ))
                 }
-            </>
+            </React.Fragment>
         ) //JSX문법 -> html과 js섞어쓰기
         ReactDOM.createRoot(root).render(element)
     </script>
