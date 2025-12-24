@@ -25,7 +25,14 @@
       React.useEffect(()=>{
         console.log('effect')
         //톰캣 서버에 요청한 결과 받아오기
-        fetch("http://localhost:8000/dept")
+        //deptListDB()
+
+      },[isOk])//빈 배열이면 최초 한 번 호출이 됨.
+      const deptListDB = () => {
+        console.log('deptListDB')
+        const dname = document.querySelector("#dname").value 
+        console.log('사용자가 입력한 부서이름 : '+dname)
+        fetch("http://localhost:8000/dept",{dname:dname})
           .then((response) => response.json())
           .then((result) => {
             //크롬 브라우저 -> 개발자 센터 확인 가능
@@ -33,17 +40,11 @@
             setDepts(result)
           })
           .catch((error) => console.error(error));
-
-      },[isOk])//빈 배열이면 최초 한 번 호출이 됨.
-      const deptListDB = () => {
-        console.log('deptListDB')
-        //아래 코드가 있을 때와 없을 때 비교해 보세요.
-        //setIsOk(true)
-        setIsOk((prev) => !prev)
       }
       return (
         <>
           <h2>부서목록</h2>
+          <input type="text" id="dname" name="dname" />
           <button type="button" onClick={deptListDB}>조회</button>
           <table className="table">
             <thead>
@@ -54,28 +55,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
+            {depts.map((dept,index) => (
+              <tr key={dept.deptno}>
+                <td>{dept.deptno}</td>
+                <td>{dept.dname}</td>
+                <td>{dept.loc}</td>
               </tr>
-              <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-              </tr>
-              <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-              </tr>
+            ))}
             </tbody>
           </table>
-          {/*
-            {depts.map((dept) => (
-              
-            ))}
-          */}
         </>
       )
     }//end of App
