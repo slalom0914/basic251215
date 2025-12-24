@@ -32,7 +32,7 @@
         console.log('deptListDB')
         const dname = document.querySelector("#dname").value 
         console.log('사용자가 입력한 부서이름 : '+dname)
-        fetch("http://localhost:8000/dept",{dname:dname})
+        fetch("http://localhost:8000/dept?dname="+dname)
           .then((response) => response.json())
           .then((result) => {
             //크롬 브라우저 -> 개발자 센터 확인 가능
